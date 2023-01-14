@@ -2,9 +2,10 @@
 
 namespace App\Tests;
 
+use App\Controller\ApiRequestController;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class ApiRequestTest extends KernelTestCase
+class ApiRequestControllerTest extends KernelTestCase
 {
     public function testSomething(): void
     {
@@ -15,10 +16,13 @@ class ApiRequestTest extends KernelTestCase
         // $myCustomService = static::getContainer()->get(CustomService::class);
     }
 
-    public function testApiRequestGetsAnswerWhenCallAPI()
+    public function testApiRequestCallSucceeded()
     {
-        $apiRequest = new apiRequest;
-        $apiRequest->callApi();
+        $apiRequestController = new ApiRequestController;
+        $responseCode = $apiRequestController->getApiResponse();
+
+        $this->assertEquals(200, $responseCode);
+
 
     }
 }
