@@ -26,11 +26,13 @@ class DogController extends AbstractController
 
 
 
-    #[Route('/dog', name: 'app_dog')]
-    public function index(): Response
+    
+    #[Route('/test', name: 'test')]
+    public function showDogTest(): Response
     {
-        return $this->render('dog/index.html.twig', [
-            'controller_name' => 'DogController',
-        ]);
+        return $this->render('dog/showDogTest.html.twig');
     }
+
+
+
 }
