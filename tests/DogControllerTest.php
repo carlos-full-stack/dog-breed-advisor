@@ -2,16 +2,28 @@
 
 namespace App\Tests;
 
+use App\Controller\DogController;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-use function PHPUnit\Framework\assertInstanceOf;
 
 class DogControllerTest extends KernelTestCase
 {
 
     public function testDogControllerIsInstantiable()
     {
-        $dog = new Dog;
-        assertInstanceOf($dog, Dog::class);
+        $dog = new DogController;
+        $this->assertInstanceOf( DogController::class, $dog);
     }
+
+    public function testShowDogTestFunctionReturnsShowDogTestRender()
+    {
+        $dog = new DogController;
+        $dog->showDogTest();
+
+        $this->assertTrue($dog->render == 'dog/showDogForm.html.twig' );
+    }
+
+
+
+
 }
