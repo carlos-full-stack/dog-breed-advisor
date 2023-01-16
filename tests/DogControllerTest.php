@@ -3,10 +3,10 @@
 namespace App\Tests;
 
 use App\Controller\DogController;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 
-class DogControllerTest extends KernelTestCase
+class DogControllerTest extends WebTestCase
 {
 
     public function testDogControllerIsInstantiable()
@@ -15,14 +15,13 @@ class DogControllerTest extends KernelTestCase
         $this->assertInstanceOf( DogController::class, $dog);
     }
 
-    public function testShowDogTestFunctionReturnsShowDogTestRender()
+    public function testTestRouteShowsTestPage() : void
     {
-        $dog = new DogController;
-        $dog->showDogTest();
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/test');
+        $this->assertSame("Test raza de perro ideal", $crawler->filter('title')->text());
 
-        $this->assertTrue($dog->render == 'dog/showDogForm.html.twig' );
     }
-
 
 
 
